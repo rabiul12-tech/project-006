@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARENPI — Subscription Platform for 3D Printable Miniatures</title>
+    <meta
+      name="description"
+      content="Unlock 3D printable STL files from multiple designers with a single subscription. Join ARENPI for access to thousands of fantasy miniatures."
+    />
+
+    <!-- Open Graph / Twitter -->
+    <meta
+      property="og:title"
+      content="ARENPI — Subscription Platform for 3D Printable Miniatures"
+    />
+    <meta
+      property="og:description"
+      content="Unlock 3D printable STL files from multiple designers with a single subscription."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1633287387306-f08b4b7051db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+    />
+    <meta property="og:url" content="https://arenpi.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FF7A1A" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* CSS Variables */
+      :root {
+        /* Colors */
+        --ink: #1a1a1e;
+        --muted: #6b7280;
+        --peach: #ff9c66;
+        --orange: #ff7a1a;
+        --gold: #ffb84d;
+        --violet: #5c36ff;
+        --plum: #3c1f5f;
+        --teal: #35d0a5;
+        --bg: #0e0f12;
+        --surface: #111218;
+        --card: #ffffff;
+        --faint: #f5f7fb;
+        --gradient-primary: linear-gradient(135deg, #ff7a1a 0%, #ff9c66 100%);
+        --gradient-secondary: linear-gradient(135deg, #5c36ff 0%, #3c1f5f 100%);
+        --gradient-hero: linear-gradient(
+          135deg,
+          rgba(255, 122, 26, 0.9) 0%,
+          rgba(92, 54, 255, 0.9) 100%
+        );
+
+        /* Typography */
+        --font-heading: "Outfit", sans-serif;
+        --font-body: "Inter", sans-serif;
+
+        /* Spacing */
+        --spacing-xs: 0.5rem; /* 8px */
+        --spacing-sm: 1rem; /* 16px */
+        --spacing-md: 1.5rem; /* 24px */
+        --spacing-lg: 2rem; /* 32px */
+        --spacing-xl: 3rem; /* 48px */
+        --spacing-xxl: 5rem; /* 80px */
+
+        /* Layout */
+        --container-width: 1200px;
+        --gutter: 24px;
+        --border-radius: 16px;
+        --border-radius-lg: 24px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+        /* Transitions */
+        --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --transition-slow: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-weight: 400;
+        color: var(--ink);
+        background-color: var(--bg);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: var(--spacing-md);
+      }
+
+      h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+
+      p {
+        margin-bottom: var(--spacing-md);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        color: var(--orange);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      /* Utility Classes */
+      .container {
+        width: 100%;
+        max-width: calc(var(--container-width) + (var(--gutter) * 2));
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .section-padding {
+        padding: var(--spacing-xxl) 0;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border-radius: 100px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        gap: var(--spacing-xs);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn--primary {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(255, 122, 26, 0.3);
+      }
+
+      .btn--primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 122, 26, 0.4);
+      }
+
+      .btn--secondary {
+        background: var(--gradient-secondary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(92, 54, 255, 0.3);
+      }
+
+      .btn--secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(92, 54, 255, 0.4);
+      }
+
+      .btn--dark {
+        background-color: var(--ink);
+        color: white;
+      }
+
+      .btn--dark:hover {
+        background-color: var(--violet);
+        transform: translateY(-2px);
+      }
+
+      /* Header */
+      .header {
+        position: sticky;
+        top: 0;
+        background-color: rgba(14, 15, 18, 0.95);
+        padding: var(--spacing-sm) 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+
+      .header__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header__logo {
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 1.75rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+      }
+
+      .header__logo-accent {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav__list {
+        display: flex;
+        list-style: none;
+        gap: var(--spacing-md);
+        align-items: center;
+      }
+
+      .nav__link {
+        font-weight: 500;
+        color: white;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav__link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: var(--gradient-primary);
+        transition: var(--transition);
+      }
+
+      .nav__link:hover {
+        color: var(--orange);
+      }
+
+      .nav__link:hover::after {
+        width: 100%;
+      }
+
+      .nav__toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+      }
+      .hero-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+
+        margin: 0 auto;
+        background: var(--gradient-hero),
+          url("https://images.unsplash.com/photo-1633287387306-f08b4b7051db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        overflow: hidden;
+        padding: var(--spacing-xxl) 0;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 70% 20%,
+          transparent 20%,
+          rgba(14, 15, 18, 0.7) 70%
+        );
+        z-index: 1;
+      }
+
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+      }
+
+      .hero__title {
+        margin-bottom: var(--spacing-md);
+        line-height: 1.1;
+      }
+
+      .hero__badge {
+        display: inline-block;
+        background: var(--gradient-primary);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        font-weight: 800;
+        margin-left: var(--spacing-xs);
+        animation: bounce 2s ease infinite;
+        font-size: 0.8rem;
+      }
+
+      .hero__text {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-xl);
+        max-width: 600px;
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      .hero__cta {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+      }
+
+      .hero__note {
+        font-size: 0.875rem;
+        color: var(--faint);
+        margin-top: var(--spacing-xs);
+        font-weight: 300;
+      }
+
+      /* Designer Prompt */
+      .designer-prompt {
+        position: relative;
+        background-color: var(--card);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: var(--spacing-lg);
+        margin-top: -60px;
+        z-index: 10;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: var(--gutter);
+        transition: var(--transition);
+      }
+
+      .designer-prompt:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .designer-prompt__title {
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .designer-prompt__text {
+        color: var(--muted);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      /* Features */
+      .features {
+        padding: var(--spacing-xxl) 0;
+        background-color: var(--faint);
+      }
+
+      .features__header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .features__title {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .features__subtitle {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+      }
+
+      .features__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+      }
+
+      .feature-card {
+        background-color: var(--card);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow);
+        padding: var(--spacing-lg);
+        text-align: center;
+        position: relative;
+        transition: var(--transition);
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-card__icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin: 0 auto var(--spacing-md);
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover .feature-card__icon {
+        transform: scale(1.1);
+      }
+
+      .feature-card__icon--blue {
+        background-color: rgba(92, 54, 255, 0.1);
+        color: var(--violet);
+      }
+
+      .feature-card__icon--green {
+        background-color: rgba(53, 208, 165, 0.1);
+        color: var(--teal);
+      }
+
+      .feature-card__icon--pink {
+        background-color: rgba(255, 156, 102, 0.1);
+        color: var(--peach);
+      }
+
+      .feature-card__icon--yellow {
+        background-color: rgba(255, 184, 77, 0.1);
+        color: var(--gold);
+      }
+
+      .feature-card__title {
+        margin-bottom: var(--spacing-sm);
+        font-size: 1.25rem;
+      }
+
+      .feature-card__text {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* Dark Band */
+      .dark-band {
+        padding: var(--spacing-xxl) 0;
+        background: linear-gradient(
+            rgba(14, 15, 18, 0.95),
+            rgba(14, 15, 18, 0.95)
+          ),
+          url("https://images.unsplash.com/photo-1633287387306-f08b4b7051db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        text-align: center;
+        position: relative;
+      }
+
+      .dark-band::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          transparent 30%,
+          rgba(14, 15, 18, 0.95) 70%
+        );
+      }
+
+      .dark-band__content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .dark-band__title {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .dark-band__features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .dark-feature {
+        background-color: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+        transition: var(--transition);
+      }
+
+      .dark-feature:hover {
+        background-color: rgba(255, 255, 255, 0.12);
+        transform: translateY(-5px);
+      }
+
+      .dark-feature__icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .dark-feature__text {
+        font-weight: 500;
+        font-size: 1.125rem;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        padding: var(--spacing-xxl) 0;
+        background-color: var(--faint);
+      }
+
+      .pricing__header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .pricing__title {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .pricing__subtitle {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+      }
+
+      .pricing__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+      }
+
+      .pricing-card {
+        background-color: var(--card);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow);
+        padding: var(--spacing-xl);
+        text-align: center;
+        position: relative;
+        transition: var(--transition);
+        overflow: hidden;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .pricing-card--popular {
+        border: 2px solid var(--orange);
+        transform: scale(1.05);
+      }
+
+      .pricing-card--popular:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      .pricing-card__badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--gradient-primary);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        border-bottom-left-radius: var(--border-radius);
+      }
+
+      .pricing-card__title {
+        margin-bottom: var(--spacing-sm);
+        font-size: 1.5rem;
+      }
+
+      .pricing-card__price {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: var(--spacing-xs);
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .pricing-card__period {
+        color: var(--muted);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .pricing-card__features {
+        list-style: none;
+        margin-bottom: var(--spacing-xl);
+        text-align: left;
+      }
+
+      .pricing-card__feature {
+        padding: var(--spacing-xs) 0;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+      }
+
+      .pricing-card__feature i {
+        color: var(--teal);
+        font-size: 1.25rem;
+      }
+
+      .pricing-card__feature--disabled {
+        color: var(--muted);
+      }
+
+      .pricing-card__feature--disabled i {
+        color: var(--muted);
+      }
+
+      /* Footer */
+      .footer {
+        padding: var(--spacing-xxl) 0 var(--spacing-md);
+        background-color: var(--surface);
+        color: white;
+      }
+
+      .footer__container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: var(--spacing-xl);
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .footer__brand {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+      }
+
+      .footer__logo {
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 1.75rem;
+        color: white;
+      }
+
+      .footer__logo-accent {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .footer__description {
+        color: var(--muted);
+        max-width: 300px;
+      }
+
+      .footer__links-title {
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-sm);
+        color: white;
+      }
+
+      .footer__links-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+
+      .footer__link {
+        color: var(--muted);
+        transition: var(--transition);
+      }
+
+      .footer__link:hover {
+        color: var(--orange);
+      }
+
+      .footer__bottom {
+        padding-top: var(--spacing-md);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      /* Animations */
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease forwards;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1199px) {
+        .features__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .pricing__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--spacing-md);
+        }
+
+        .pricing-card--popular {
+          transform: none;
+        }
+
+        .pricing-card--popular:hover {
+          transform: translateY(-10px);
+        }
+      }
+
+      @media (max-width: 991px) {
+        .footer__container {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer__brand {
+          grid-column: 1 / -1;
+        }
+
+        .dark-band__features {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .header {
+          padding: var(--spacing-xs) 0;
+        }
+
+        .nav {
+          position: relative;
+        }
+
+        .nav__list {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background-color: var(--surface);
+          flex-direction: column;
+          padding: var(--spacing-md);
+          gap: var(--spacing-sm);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          transform: translateY(-100%);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s ease;
+          z-index: 99;
+        }
+
+        .nav__list--open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        .nav__toggle {
+          display: block;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: var(--spacing-xl) 0;
+        }
+
+        .hero__text {
+          font-size: 1.125rem;
+        }
+
+        .designer-prompt {
+          margin: var(--spacing-xl) auto;
+          max-width: 100%;
+        }
+
+        .features {
+          padding: var(--spacing-xl) 0;
+        }
+
+        .features__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dark-band {
+          padding: var(--spacing-xl) 0;
+        }
+
+        .dark-band__features {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer__container {
+          grid-template-columns: 1fr;
+        }
+
+        .section-padding {
+          padding: var(--spacing-xl) 0;
+        }
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .hero__badge {
+          animation: none;
+        }
+      }
+
+      /* Focus styles */
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--orange);
+        outline-offset: 2px;
+      } /* Testimonials Section */
+      .testimonials {
+        background-color: var(--card);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--orange),
+          transparent
+        );
+      }
+
+      .testimonials__header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .testimonials__title {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .testimonials__subtitle {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+      }
+
+      .testimonials__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xxl);
+      }
+
+      .testimonial-card {
+        background-color: var(--faint);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg);
+        transition: var(--transition);
+        position: relative;
+        border: 1px solid rgba(255, 122, 26, 0.1);
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(255, 122, 26, 0.3);
+      }
+
+      .testimonial-card__rating {
+        display: flex;
+        gap: 4px;
+        margin-bottom: var(--spacing-md);
+        color: var(--gold);
+        font-size: 1.25rem;
+      }
+
+      .testimonial-card__text {
+        font-style: italic;
+        color: var(--ink);
+        margin-bottom: var(--spacing-lg);
+        line-height: 1.7;
+        position: relative;
+      }
+
+      .testimonial-card__text::before {
+        content: '"';
+        font-size: 3rem;
+        color: var(--orange);
+        opacity: 0.2;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        font-family: Georgia, serif;
+      }
+
+      .testimonial-card__author {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+
+      .testimonial-card__avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+      }
+
+      .testimonial-card__info {
+        flex: 1;
+      }
+
+      .testimonial-card__name {
+        font-size: 1.125rem;
+        margin-bottom: 2px;
+        color: var(--ink);
+      }
+
+      .testimonial-card__role {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .testimonials__stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-lg);
+        text-align: center;
+      }
+
+      .stat {
+        padding: var(--spacing-md);
+      }
+
+      .stat__number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: var(--spacing-xs);
+        font-family: var(--font-heading);
+      }
+
+      .stat__label {
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 991px) {
+        .testimonials__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonials__stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .testimonials__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonials__stats {
+          grid-template-columns: 1fr;
+        }
+
+        .stat__number {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="container header__container">
+        <a href="#" class="header__logo">
+          ARE<span class="header__logo-accent">NPI</span>
+        </a>
+
+        <nav class="nav">
+          <button
+            class="nav__toggle"
+            id="navToggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="ri-menu-line"></i>
+          </button>
+
+          <ul class="nav__list" id="navList">
+            <li><a href="#designers" class="nav__link">Designers</a></li>
+            <li><a href="#how-it-works" class="nav__link">How It Works</a></li>
+            <li><a href="#pricing" class="nav__link">Pricing</a></li>
+            <li><a href="#join" class="btn btn--primary">Join us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div class="hero__content">
+            <h1 class="hero__title fade-in">
+              Subscribe once, reach all — Platform of
+              <span>3D<span class="hero__badge">3D</span></span> Printable
+              Miniatures
+            </h1>
+            <p class="hero__text fade-in">
+              Unlock unlimited access to premium STL files from top designers
+              worldwide. One subscription gives you everything you need for your
+              next tabletop adventure.
+            </p>
+
+            <div class="hero__cta fade-in">
+              <a href="#pricing" class="btn btn--primary">Join us now</a>
+              <p class="hero__note">
+                Portal is opening soon... Join us before launch.
+              </p>
+            </div>
+          </div>
+
+          <div class="designer-prompt fade-in">
+            <h3 class="designer-prompt__title">Are you a designer?</h3>
+            <p class="designer-prompt__text">
+              Join our platform and reach thousands of 3D printing enthusiasts.
+            </p>
+            <button class="btn btn--dark">Let me check</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features" id="how-it-works">
+        <div class="container">
+          <div class="features__header">
+            <h2 class="features__title">How you start</h2>
+            <p class="features__subtitle">
+              You choose one of our plans and then you start to unlock the posts
+              of designers.
+            </p>
+          </div>
+
+          <div class="features__grid">
+            <div class="feature-card fade-in">
+              <div class="feature-card__icon feature-card__icon--blue">
+                <i class="ri-calendar-check-line"></i>
+              </div>
+              <h3 class="feature-card__title">
+                Subscribe and choose your plan
+              </h3>
+              <p class="feature-card__text">
+                Every plan offers different unlocks and benefits tailored to
+                your needs.
+              </p>
+            </div>
+
+            <div class="feature-card fade-in">
+              <div class="feature-card__icon feature-card__icon--green">
+                <i class="ri-archive-line"></i>
+              </div>
+              <h3 class="feature-card__title">Never miss any model</h3>
+              <p class="feature-card__text">
+                Previous months are archived, so models are always waiting for
+                you.
+              </p>
+            </div>
+
+            <div class="feature-card fade-in">
+              <div class="feature-card__icon feature-card__icon--pink">
+                <i class="ri-shopping-cart-line"></i>
+              </div>
+              <h3 class="feature-card__title">Don't buy what you don't need</h3>
+              <p class="feature-card__text">
+                Decide each month what to unlock based on your current projects.
+              </p>
+            </div>
+
+            <div class="feature-card fade-in">
+              <div class="feature-card__icon feature-card__icon--yellow">
+                <i class="ri-printer-line"></i>
+              </div>
+              <h3 class="feature-card__title">Printability</h3>
+              <p class="feature-card__text">
+                All models are tested for FDM and resin compatibility with
+                thorough checks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dark Band -->
+      <section class="dark-band" id="what-awaits">
+        <div class="container">
+          <div class="dark-band__content">
+            <h2 class="dark-band__title">What awaits you</h2>
+
+            <div class="dark-band__features">
+              <div class="dark-feature fade-in">
+                <div class="dark-feature__icon">
+                  <i class="ri-group-line"></i>
+                </div>
+                <p class="dark-feature__text">
+                  Tens of talented designers — with many more on the way —
+                  constantly expanding our creative network.
+                </p>
+              </div>
+
+              <div class="dark-feature fade-in">
+                <div class="dark-feature__icon">
+                  <i class="ri-stack-line"></i>
+                </div>
+                <p class="dark-feature__text">
+                  Thousand of 3d printable miniature models — every month new
+                  models
+                </p>
+              </div>
+
+              <div class="dark-feature fade-in">
+                <div class="dark-feature__icon">
+                  <i class="ri-cpu-line"></i>
+                </div>
+                <p class="dark-feature__text">
+                  A new platform which is only dedicated to 3d printable
+                  miniatures
+                </p>
+              </div>
+            </div>
+
+            <a href="#pricing" class="btn btn--primary">See Pricing</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="pricing section-padding" id="pricing">
+        <div class="container">
+          <div class="pricing__header">
+            <h2 class="pricing__title">Simple, Transparent Pricing</h2>
+            <p class="pricing__subtitle">
+              Choose the plan that works best for your 3D printing needs. All
+              plans include access to our growing library of miniatures.
+            </p>
+          </div>
+
+          <div class="pricing__grid">
+            <div class="pricing-card fade-in">
+              <h3 class="pricing-card__title">Starter</h3>
+              <div class="pricing-card__price">$9<span>.99</span></div>
+              <p class="pricing-card__period">per month</p>
+              <ul class="pricing-card__features">
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>5 monthly unlocks</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Access to basic collections</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Community support</span>
+                </li>
+                <li
+                  class="pricing-card__feature pricing-card__feature--disabled"
+                >
+                  <i class="ri-close-line"></i>
+                  <span>Early access to new releases</span>
+                </li>
+                <li
+                  class="pricing-card__feature pricing-card__feature--disabled"
+                >
+                  <i class="ri-close-line"></i>
+                  <span>Commercial license</span>
+                </li>
+              </ul>
+              <a href="#join" class="btn btn--secondary">Get Started</a>
+            </div>
+
+            <div class="pricing-card pricing-card--popular fade-in">
+              <div class="pricing-card__badge">Most Popular</div>
+              <h3 class="pricing-card__title">Creator</h3>
+              <div class="pricing-card__price">$19<span>.99</span></div>
+              <p class="pricing-card__period">per month</p>
+              <ul class="pricing-card__features">
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>15 monthly unlocks</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Access to all collections</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Priority support</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Early access to new releases</span>
+                </li>
+                <li
+                  class="pricing-card__feature pricing-card__feature--disabled"
+                >
+                  <i class="ri-close-line"></i>
+                  <span>Commercial license</span>
+                </li>
+              </ul>
+              <a href="#join" class="btn btn--primary">Get Started</a>
+            </div>
+
+            <div class="pricing-card fade-in">
+              <h3 class="pricing-card__title">Professional</h3>
+              <div class="pricing-card__price">$39<span>.99</span></div>
+              <p class="pricing-card__period">per month</p>
+              <ul class="pricing-card__features">
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Unlimited monthly unlocks</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Access to all collections</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Priority support</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Early access to new releases</span>
+                </li>
+                <li class="pricing-card__feature">
+                  <i class="ri-check-line"></i>
+                  <span>Commercial license</span>
+                </li>
+              </ul>
+              <a href="#join" class="btn btn--secondary">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Testimonials -->
+    <section class="testimonials section-padding" id="testimonials">
+      <div class="container">
+        <div class="testimonials__header">
+          <h2 class="testimonials__title">What Our Community Says</h2>
+          <p class="testimonials__subtitle">
+            Join thousands of 3D printing enthusiasts who are already creating
+            amazing miniatures with ARENPI.
+          </p>
+        </div>
+
+        <div class="testimonials__grid">
+          <div class="testimonial-card fade-in">
+            <div class="testimonial-card__rating">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+            </div>
+            <p class="testimonial-card__text">
+              "ARENPI has completely transformed my tabletop gaming experience.
+              The quality of models is exceptional and the variety is
+              unmatched."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">
+                <i class="ri-user-fill"></i>
+              </div>
+              <div class="testimonial-card__info">
+                <h4 class="testimonial-card__name">Alex Morgan</h4>
+                <p class="testimonial-card__role">Tabletop Gamer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-in">
+            <div class="testimonial-card__rating">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+            </div>
+            <p class="testimonial-card__text">
+              "As a designer, ARENPI gave me the platform I needed to reach a
+              wider audience. The revenue share is fair and the community
+              engagement is amazing."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">
+                <i class="ri-user-fill"></i>
+              </div>
+              <div class="testimonial-card__info">
+                <h4 class="testimonial-card__name">Sarah Chen</h4>
+                <p class="testimonial-card__role">3D Model Designer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-in">
+            <div class="testimonial-card__rating">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-half-fill"></i>
+            </div>
+            <p class="testimonial-card__text">
+              "The printability of models is outstanding. I've never had such
+              consistent success with both FDM and resin printing from a single
+              source."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">
+                <i class="ri-user-fill"></i>
+              </div>
+              <div class="testimonial-card__info">
+                <h4 class="testimonial-card__name">Marcus Rivera</h4>
+                <p class="testimonial-card__role">Printing Enthusiast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonials__stats">
+          <div class="stat">
+            <div class="stat__number">10K+</div>
+            <div class="stat__label">Active Members</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number">50+</div>
+            <div class="stat__label">Talented Designers</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number">25K+</div>
+            <div class="stat__label">Printable Models</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number">4.9/5</div>
+            <div class="stat__label">Average Rating</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__container">
+          <div class="footer__brand">
+            <div class="footer__logo">
+              ARE<span class="footer__logo-accent">NPI</span>
+            </div>
+            <p class="footer__description">
+              Subscription based online marketplace that allows designers to
+              sell their digital files of 3D printable miniatures.
+            </p>
+          </div>
+
+          <div class="footer__links">
+            <h3 class="footer__links-title">Company</h3>
+            <ul class="footer__links-list">
+              <li><a href="#designers" class="footer__link">Designers</a></li>
+              <li><a href="#pricing" class="footer__link">Pricing</a></li>
+              <li><a href="#join" class="footer__link">How to Join us</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__links">
+            <h3 class="footer__links-title">Useful links</h3>
+            <ul class="footer__links-list">
+              <li><a href="#faqs" class="footer__link">FAQs</a></li>
+              <li><a href="#terms" class="footer__link">Terms of Use</a></li>
+              <li>
+                <a href="#privacy" class="footer__link">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>
+            Copyright © Arenpi, <span id="currentYear"></span> — All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Set current year for copyright
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      // Mobile navigation toggle
+      const navToggle = document.getElementById("navToggle");
+      const navList = document.getElementById("navList");
+      const body = document.body;
+
+      navToggle.addEventListener("click", function () {
+        const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
+        navToggle.setAttribute("aria-expanded", !isExpanded);
+        navList.classList.toggle("nav__list--open");
+        body.classList.toggle("no-scroll");
+      });
+
+      // Close mobile nav when clicking on links
+      const navLinks = document.querySelectorAll(".nav__link");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navList.classList.remove("nav__list--open");
+          navToggle.setAttribute("aria-expanded", "false");
+          body.classList.remove("no-scroll");
+        });
+      });
+
+      // Modal functionality for designer prompt
+      const designerButton = document.querySelector(".designer-prompt .btn");
+      designerButton.addEventListener("click", () => {
+        alert(
+          "Designer registration will be available soon! Please check back later."
+        );
+      });
+
+      // Fade in animation on scroll
+      const fadeElements = document.querySelectorAll(".fade-in");
+
+      const fadeInOnScroll = () => {
+        fadeElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+
+      // Set initial state for fade elements
+      fadeElements.forEach((element) => {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+        element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      });
+
+      // Check on load and scroll
+      window.addEventListener("load", fadeInOnScroll);
+      window.addEventListener("scroll", fadeInOnScroll);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            // Check if reduced motion is preferred
+            const reducedMotion = window.matchMedia(
+              "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            if (reducedMotion) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: "auto",
+              });
+            } else {
+              window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: "smooth",
+              });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
