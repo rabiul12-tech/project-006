@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-canvas: #F7F9FC;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-primary: #172033;
+    --text-secondary: #64748B;
+    --border-color: #E2E8F0;
+    --accent-primary: #2563EB;
+    --accent-secondary: #F59E0B;
+    --status-success: #059669;
+    --status-danger: #DC2626;
+    --soft-blue: #EFF6FF;
+  }
+
+  .dark {
+    --bg-canvas: #0B1220;
+    --bg-sidebar: #111B2C;
+    --bg-card: #172337;
+    --bg-elevated: #1F3047;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --border-color: #304158;
+    --accent-primary: #60A5FA;
+    --accent-secondary: #FBBF24;
+    --status-success: #10B981;
+    --status-danger: #F87171;
+    --soft-blue: #1E293B;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+

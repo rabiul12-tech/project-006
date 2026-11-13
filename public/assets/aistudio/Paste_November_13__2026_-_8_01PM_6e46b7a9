@@ -1,0 +1,1718 @@
+# PROJECT 006: STOCKORA ERP — PREMIUM INVENTORY & WAREHOUSE MANAGEMENT SYSTEM
+
+## YOUR ROLE
+
+Act as a world-class Enterprise SaaS Product Designer, Senior Next.js Engineer, Inventory Systems Architect, and UX Interaction Specialist.
+
+Build a complete, premium-quality, deeply interactive Inventory and Warehouse Management application named:
+
+**STOCKORA ERP**
+
+Tagline: Every Product. Every Movement. Under Control.
+
+This is Project 006 in a portfolio of 20 premium applications.
+
+The finished application must demonstrate the design sophistication, functional depth, and engineering quality associated with a professionally commissioned $10,000+ custom inventory management platform.
+
+This must NOT be a generic admin dashboard, static template, or decorative prototype.
+
+Build a working, browser-local application with realistic business workflows.
+
+Highest priorities:
+
+1. Inventory accuracy.
+2. Multi-warehouse stock management.
+3. Reliable stock movement history.
+4. Purchase order and goods receiving workflows.
+5. Premium enterprise UI/UX.
+6. Consistent LocalStorage persistence.
+7. Comprehensive interactive functionality.
+
+---
+
+# 1. TECHNOLOGY STACK
+
+Use:
+
+- Next.js App Router
+- React
+- TypeScript with strict typing
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
+- Zustand for application state where useful
+- TanStack Table
+- Recharts
+- React Hook Form
+- Zod
+- date-fns
+- dnd-kit only where meaningful
+- decimal.js for financial calculations
+- Client-side QR code generation
+- Client-side barcode generation
+- jsPDF or pdf-lib for documents
+- LocalStorage for persistence
+- Vitest
+- React Testing Library
+- Playwright for critical workflows where supported
+
+Use compatible and stable package versions.
+
+## ABSOLUTE RESTRICTIONS
+
+Do NOT use:
+
+- PostgreSQL
+- MySQL
+- MongoDB
+- Firebase
+- Supabase
+- Prisma
+- External databases
+- Custom backend servers
+- External authentication providers
+- Paid APIs
+- Cloud storage services
+- Real shipping integrations
+- Real supplier APIs
+- External inventory synchronization
+
+All persistent business data must remain in the browser.
+
+Do not require registration or sign-in.
+
+Provide a demo workspace immediately.
+
+Do not store credentials, payment card details, or other secrets.
+
+This is a browser-local portfolio demonstration, not a secure, multi-user, production ERP.
+
+---
+
+# 2. PRODUCT VISION
+
+STOCKORA ERP helps businesses organize products, suppliers, warehouses, purchase orders, stock movements, and inventory valuation.
+
+Target users:
+
+- Retail Businesses
+- Ecommerce Stores
+- Warehouse Managers
+- Wholesale Distributors
+- Manufacturing Teams
+- Inventory Controllers
+- Purchasing Managers
+- Operations Teams
+
+Core workflows:
+
+1. Create products and variants.
+2. Manage multiple warehouses.
+3. Track stock quantities.
+4. Maintain supplier relationships.
+5. Create purchase orders.
+6. Record goods receiving.
+7. Transfer stock between warehouses.
+8. Adjust damaged or missing inventory.
+9. Track inventory movement history.
+10. Configure reorder points.
+11. Generate low-stock alerts.
+12. Print barcode and QR labels.
+13. Calculate inventory value.
+14. Generate operational reports.
+
+Every workflow must be functional and use consistent shared records.
+
+---
+
+# 3. PREMIUM VISUAL DESIGN SYSTEM
+
+Create an original enterprise software identity.
+
+Design inspiration:
+
+- Odoo Inventory
+- Zoho Inventory
+- Cin7
+- Modern supply chain management systems
+- High-end operational SaaS products
+
+Do not copy trademarks, logos, proprietary layouts, or branded assets.
+
+## DESIGN PERSONALITY
+
+- Precise
+- Industrial but modern
+- Highly organized
+- Confident
+- Professional
+- Operationally focused
+- Information-rich
+- Extremely usable
+
+The application should feel different from CRM, finance, analytics, HR, and project management dashboards.
+
+## LIGHT MODE
+
+- Background: #F7F9FC
+- Sidebar: #FFFFFF
+- Cards: #FFFFFF
+- Primary text: #172033
+- Secondary text: #64748B
+- Border: #E2E8F0
+- Primary accent: #2563EB
+- Secondary accent: #F59E0B
+- Success: #059669
+- Danger: #DC2626
+- Soft blue: #EFF6FF
+
+## DARK MODE
+
+- Background: #0B1220
+- Sidebar: #111B2C
+- Cards: #172337
+- Elevated surface: #1F3047
+- Primary text: #F8FAFC
+- Secondary text: #94A3B8
+- Borders: #304158
+- Primary accent: #60A5FA
+- Secondary accent: #FBBF24
+
+Use semantic color tokens.
+
+## TYPOGRAPHY
+
+Use Geist or Inter.
+
+Use tabular numbers for quantities, prices, costs, and monetary calculations.
+
+Prioritize readability in dense data tables.
+
+## UI DETAILS
+
+- Carefully aligned columns
+- Compact operational tables
+- Clear status badges
+- Responsive card layouts
+- Elegant detail drawers
+- Refined confirmation dialogs
+- Minimal animations
+- Appropriate whitespace
+- Clear visual grouping
+- Accessible keyboard interactions
+
+Avoid unnecessary gradients, glassmorphism, decorative 3D graphics, and oversized icons.
+
+---
+
+# 4. APPLICATION SHELL
+
+Build a responsive application layout.
+
+## SIDEBAR
+
+Top:
+
+- STOCKORA logo
+- Workspace selector
+- Demo organization name
+
+Navigation:
+
+OVERVIEW
+- Dashboard
+- Inventory
+- Products
+- Categories
+
+WAREHOUSE
+- Warehouses
+- Stock Movements
+- Stock Transfers
+- Stock Adjustments
+
+PURCHASING
+- Purchase Orders
+- Suppliers
+- Goods Receiving
+
+OPERATIONS
+- Reorder Planning
+- Barcode Labels
+- Activity
+
+INSIGHTS
+- Analytics
+- Reports
+
+SYSTEM
+- Team
+- Settings
+- Help
+
+Bottom:
+
+- Demo user profile
+- Theme toggle
+- Sidebar collapse
+
+Requirements:
+
+- Active navigation indicator
+- Collapsible sidebar
+- Icon-only collapsed mode
+- Tooltip labels
+- Smooth transitions
+- Mobile slide-out navigation
+
+## TOPBAR
+
+Include:
+
+- Breadcrumb navigation
+- Global search
+- Warehouse selector
+- Quick Create
+- Notification center
+- Theme toggle
+- Demo profile
+
+Quick Create:
+
+- Add Product
+- Add Supplier
+- Create Purchase Order
+- Receive Stock
+- Transfer Stock
+- Adjust Inventory
+
+All quick actions must open working interfaces.
+
+---
+
+# 5. REQUIRED APPLICATION PAGES
+
+## PAGE 01: /dashboard
+
+INVENTORY CONTROL CENTER.
+
+Include:
+
+- Total Active Products
+- Total SKUs
+- Inventory Valuation
+- Total Stock Units
+- Low Stock Products
+- Out of Stock Products
+- Pending Purchase Orders
+- Incoming Inventory
+- Warehouse Distribution
+- Inventory Value Trend
+- Category Distribution
+- Recent Stock Movements
+- Reorder Alerts
+- Quick Actions
+
+All numbers must derive from real local records.
+
+Stock totals and valuation must use the same inventory engine used throughout the application.
+
+## PAGE 02: /dashboard/inventory
+
+MASTER INVENTORY VIEW.
+
+Include:
+
+- Inventory table
+- Product
+- SKU
+- Category
+- Warehouse
+- On-hand Quantity
+- Reserved Quantity
+- Available Quantity
+- Reorder Point
+- Stock Status
+- Unit Cost
+- Total Value
+- Search
+- Multi-filtering
+- Sorting
+- Pagination
+- Column visibility
+- Warehouse filtering
+- Category filtering
+- Stock status filtering
+- CSV export
+- Quick adjustment
+- Product details
+
+Stock status must be derived from actual available stock and configured thresholds.
+
+Do not store arbitrary stock status labels disconnected from quantities.
+
+## PAGE 03: /dashboard/products
+
+PRODUCT MANAGEMENT.
+
+Include:
+
+- Product list view
+- Product grid view
+- Product images
+- SKU
+- Barcode
+- Name
+- Category
+- Brand
+- Description
+- Unit of measure
+- Selling price
+- Purchase cost
+- Supplier
+- Status
+- Create product
+- Edit product
+- Archive product
+- Search
+- Filtering
+- Sorting
+- Pagination
+- Bulk actions
+- Product details drawer
+
+Support product variants such as:
+
+- Size
+- Color
+- Packaging
+
+Each independently stocked variant must have a distinct SKU.
+
+Prevent duplicate active SKU identifiers.
+
+Do not let catalog edits silently overwrite historical stock transactions.
+
+## PAGE 04: /dashboard/products/[id]
+
+SIGNATURE FEATURE: PRODUCT 360° VIEW.
+
+Create an exceptional product detail workspace.
+
+Header:
+
+- Product image
+- Product name
+- SKU
+- Category
+- Status
+- Unit cost
+- Selling price
+
+Tabs:
+
+1. Overview
+2. Stock by Warehouse
+3. Stock Movements
+4. Purchasing
+5. Suppliers
+6. Barcode & Labels
+7. Activity
+
+Overview:
+
+- Total On-hand
+- Reserved
+- Available
+- Reorder Point
+- Inventory Value
+- Latest Purchase
+- Product Details
+
+Stock by Warehouse:
+
+- Warehouse name
+- Quantity
+- Available quantity
+- Reserved quantity
+- Stock status
+
+Stock Movements:
+
+- Chronological movement ledger
+- Quantity delta
+- Movement reason
+- Source document
+- Warehouse
+- Timestamp
+
+Purchasing:
+
+- Related purchase orders
+- Received quantities
+- Pending quantities
+
+Suppliers:
+
+- Preferred supplier
+- Alternative suppliers
+- Supplier product codes
+
+Barcode & Labels:
+
+- Barcode preview
+- QR preview
+- Printable label
+
+Activity:
+
+- Product changes
+- Stock changes
+- Purchase events
+
+All tabs must reference the same product ID.
+
+## PAGE 05: /dashboard/categories
+
+PRODUCT CATEGORY MANAGEMENT.
+
+Include:
+
+- Category list
+- Nested category support if practical
+- Category name
+- Description
+- Product count
+- Inventory value
+- Create category
+- Edit category
+- Archive category
+- Category details
+- Search
+- Sorting
+
+Archiving a category must not delete historical products.
+
+## PAGE 06: /dashboard/warehouses
+
+MULTI-WAREHOUSE MANAGEMENT.
+
+Include:
+
+- Warehouse cards
+- Warehouse table
+- Warehouse name
+- Warehouse code
+- Location description
+- Manager
+- Capacity description
+- Product count
+- Total units
+- Stock value
+- Warehouse status
+- Create warehouse
+- Edit warehouse
+- Archive warehouse
+- Warehouse details
+
+Provide a premium warehouse detail page showing:
+
+- Inventory balance
+- Category distribution
+- Low-stock items
+- Recent movements
+- Incoming transfers
+- Outgoing transfers
+
+Prevent archiving an active warehouse with unresolved stock or transfers unless the user completes an explicit resolution workflow.
+
+## PAGE 07: /dashboard/movements
+
+STOCK MOVEMENT LEDGER.
+
+This is a critical feature.
+
+Include:
+
+- Movement ID
+- Date and time
+- Product SKU
+- Warehouse
+- Movement type
+- Quantity delta
+- Source reference
+- Reason
+- Demo actor
+- Before quantity
+- After quantity
+- Search
+- Date range filtering
+- Warehouse filtering
+- Product filtering
+- Movement type filtering
+- CSV export
+- Movement details
+
+Movement types:
+
+- Opening Balance
+- Purchase Receipt
+- Transfer Out
+- Transfer In
+- Positive Adjustment
+- Negative Adjustment
+- Reservation
+- Reservation Release
+- Reversal
+
+A completed posted movement must not be edited destructively.
+
+Use compensating reversal entries when correcting posted transactions.
+
+Do not allow direct arbitrary changes to derived stock totals.
+
+The movement ledger must be the source of truth for stock calculations.
+
+## PAGE 08: /dashboard/transfers
+
+SIGNATURE FEATURE: INTER-WAREHOUSE STOCK TRANSFERS.
+
+Build a premium transfer workspace.
+
+Fields:
+
+- Transfer number
+- Source warehouse
+- Destination warehouse
+- Product/SKU
+- Quantity
+- Transfer date
+- Reference notes
+- Transfer status
+
+Statuses:
+
+- Draft
+- In Transit
+- Completed
+- Cancelled
+
+Workflow:
+
+1. Select source warehouse.
+2. Select destination warehouse.
+3. Select product.
+4. Enter quantity.
+5. Validate available quantity.
+6. Create transfer.
+7. Dispatch transfer.
+8. Receive transfer at destination.
+9. Complete transfer.
+
+Requirements:
+
+- Source and destination cannot be identical.
+- Quantity must be positive.
+- Source must have enough available stock.
+- Dispatch reduces source on-hand stock.
+- In-transit quantity is tracked separately.
+- Receipt increases destination on-hand stock.
+- Completed transfer must not apply twice.
+- Cancelled draft must not change stock.
+- Cancelling an in-transit transfer must use an explicit return or resolution workflow.
+- All posted movements must be recorded.
+
+Show a clear transfer timeline.
+
+Prevent duplicate dispatch or receiving actions.
+
+Use stable transaction identifiers and idempotency checks within the local application state.
+
+## PAGE 09: /dashboard/adjustments
+
+INVENTORY ADJUSTMENTS.
+
+Include:
+
+- Adjustment list
+- Create adjustment
+- Select warehouse
+- Select product
+- Current quantity
+- Adjustment quantity
+- Adjustment type
+- Reason
+- Notes
+- Preview new balance
+- Confirm adjustment
+- Adjustment history
+- CSV export
+
+Reasons:
+
+- Damaged
+- Lost
+- Found
+- Stock Count Correction
+- Expired
+- Other
+
+Require an explicit confirmation before posting.
+
+Do not permit negative stock.
+
+Record all adjustments in the immutable logical movement ledger.
+
+Support correction by reversal rather than deleting posted history.
+
+## PAGE 10: /dashboard/purchase-orders
+
+PURCHASE ORDER MANAGEMENT.
+
+Include:
+
+- Purchase order table
+- PO number
+- Supplier
+- Order date
+- Expected delivery
+- Total amount
+- Ordered quantity
+- Received quantity
+- Outstanding quantity
+- PO status
+- Search
+- Filtering
+- Sorting
+- Create PO
+- Edit draft PO
+- Duplicate PO
+- Cancel eligible PO
+- PO detail view
+- Print PO
+- PDF export
+
+Statuses:
+
+- Draft
+- Ordered
+- Partially Received
+- Received
+- Cancelled
+
+Purchase order line items:
+
+- Product
+- SKU
+- Quantity ordered
+- Unit purchase cost
+- Discount
+- Tax where configured
+- Line total
+
+PO total must be calculated accurately using decimal arithmetic.
+
+Creating a PO must not immediately increase stock.
+
+Stock should increase only after goods receiving is posted.
+
+## PAGE 11: /dashboard/suppliers
+
+SUPPLIER MANAGEMENT.
+
+Include:
+
+- Supplier directory
+- Company name
+- Contact name
+- Business email
+- Phone
+- Location
+- Supplier code
+- Status
+- Preferred product categories
+- Linked products
+- Purchase history
+- Outstanding purchase orders
+- Supplier details
+- Add supplier
+- Edit supplier
+- Archive supplier
+- Search
+- Filters
+
+Use fictional supplier data.
+
+Do not integrate real communication services.
+
+## PAGE 12: /dashboard/receiving
+
+GOODS RECEIVING WORKSPACE.
+
+This is another critical feature.
+
+Workflow:
+
+1. Select an Ordered or Partially Received PO.
+2. Review outstanding line items.
+3. Select receiving warehouse.
+4. Enter received quantities.
+5. Record accepted quantities.
+6. Record rejected/damaged quantities separately.
+7. Preview stock impact.
+8. Confirm receipt.
+9. Generate receipt record.
+10. Update PO received totals.
+11. Add accepted units to warehouse stock.
+12. Record ledger movements.
+
+Rules:
+
+- Partial receiving is supported.
+- Received quantities cannot exceed outstanding quantities unless an explicit over-receipt workflow is implemented.
+- Rejected quantities must not increase usable inventory.
+- The same receipt must not be posted twice.
+- PO status must update correctly.
+- Receiving a PO cannot create duplicate stock entries.
+- Posted receipts require correction through controlled reversal.
+
+Provide a professional Goods Receipt Note preview and printable document.
+
+## PAGE 13: /dashboard/reorder
+
+REORDER PLANNING.
+
+Include:
+
+- Low-stock products
+- Out-of-stock products
+- Reorder point
+- Target stock level
+- Suggested reorder quantity
+- Preferred supplier
+- Current on-order quantity
+- Available quantity
+- Warehouse filters
+- Category filters
+- Create draft purchase order from selected recommendations
+
+Use a documented reorder formula.
+
+Suggested Reorder Quantity:
+
+Maximum(0, Target Stock − Available Stock − Confirmed Incoming Stock)
+
+If reservations affect available stock, account for them consistently.
+
+Do not automatically place real purchase orders.
+
+## PAGE 14: /dashboard/barcodes
+
+BARCODE & QR LABEL GENERATOR.
+
+Include:
+
+- Product selector
+- SKU selection
+- Barcode generation
+- QR code generation
+- Label preview
+- Label size selection
+- Product name
+- SKU
+- Price where configured
+- Barcode/QR output
+- Print labels
+- Download printable PDF
+- Batch label generation
+
+Use valid barcode formats.
+
+For CODE128, encode compatible SKU strings.
+
+For QR labels, use compact product identification data or an in-app product reference.
+
+Do not claim that generated labels are registered GS1 identifiers or external tracking services.
+
+Support clean printing.
+
+## PAGE 15: /dashboard/analytics
+
+INVENTORY ANALYTICS.
+
+Include:
+
+- Total inventory value
+- Stock by warehouse
+- Stock by category
+- Movement trends
+- Purchase trends
+- Receiving trends
+- Stock adjustment reasons
+- Low-stock trends
+- Out-of-stock rates
+- Supplier purchasing distribution
+- Stock turnover where sufficient historical data exists
+- Date range filtering
+
+Use actual data from the central inventory system.
+
+Document calculations.
+
+Do not generate random KPIs disconnected from records.
+
+## PAGE 16: /dashboard/reports
+
+REPORTING CENTER.
+
+Include:
+
+- Inventory Balance Report
+- Stock Movement Report
+- Warehouse Inventory Report
+- Low Stock Report
+- Reorder Report
+- Purchase Order Report
+- Goods Receiving Report
+- Supplier Report
+- Stock Adjustment Report
+- Inventory Valuation Report
+
+Support:
+
+- Date filtering
+- Warehouse filtering
+- Product filtering
+- Category filtering
+- CSV export
+- Print-friendly layout
+- Save report configurations
+
+Reports must reflect the current data.
+
+Historical reports should respect relevant transaction timestamps.
+
+## PAGE 17: /dashboard/activity
+
+OPERATIONAL ACTIVITY LOG.
+
+Include:
+
+- Product created
+- Product edited
+- Warehouse created
+- Transfer dispatched
+- Transfer received
+- PO created
+- Goods received
+- Adjustment posted
+- Supplier updated
+- Settings changed
+
+Support:
+
+- Date filtering
+- Event type filtering
+- Search
+- Related document navigation
+- Demo actor display
+
+This is a local activity log, not a tamper-proof audit system.
+
+## PAGE 18: /dashboard/settings
+
+WORKSPACE SETTINGS.
+
+Include:
+
+- Business name
+- Company logo
+- Default currency
+- Date format
+- Number format
+- Default warehouse
+- Units of measure
+- Stock valuation method
+- Low-stock thresholds
+- Purchase order numbering
+- Transfer numbering
+- Negative stock policy
+- Theme
+- Sidebar preferences
+- Notification preferences
+- JSON backup
+- JSON restore
+- Reset demo data
+
+For the initial release, use one explicitly documented inventory valuation method, such as Moving Weighted Average Cost.
+
+Do not offer unsupported accounting methods as functional options.
+
+Settings changes must preserve existing posted transaction history.
+
+## PAGE 19: /dashboard/help
+
+HELP & DOCUMENTATION.
+
+Include:
+
+- Getting started
+- Adding products
+- Managing warehouses
+- Purchase order workflow
+- Goods receiving workflow
+- Inter-warehouse transfers
+- Stock adjustments
+- Inventory valuation
+- Barcode generation
+- Reports
+- Backup and restore
+- LocalStorage limitations
+- Frequently asked questions
+
+---
+
+# 6. INVENTORY DATA ARCHITECTURE
+
+Create strongly typed models for:
+
+- Product
+- ProductVariant
+- ProductCategory
+- Warehouse
+- Supplier
+- SupplierProduct
+- PurchaseOrder
+- PurchaseOrderLine
+- GoodsReceipt
+- GoodsReceiptLine
+- StockTransfer
+- StockTransferLine
+- StockAdjustment
+- StockMovement
+- StockReservation
+- InventoryBalance
+- ReorderRule
+- Activity
+- SavedReport
+- WorkspaceSettings
+
+Use stable IDs.
+
+Use SKU-based identification without relying on product names as unique identifiers.
+
+A product may exist in multiple warehouses.
+
+A supplier may supply multiple products.
+
+A purchase order references one supplier and one or more product lines.
+
+Goods receipts must reference purchase orders.
+
+Stock transfers must reference source and destination warehouses.
+
+Inventory balances must be derived from posted movement records and valid reservations.
+
+Avoid duplicating mutable balances across unrelated components.
+
+---
+
+# 7. INVENTORY TRANSACTION ENGINE
+
+THIS IS THE MOST IMPORTANT TECHNICAL REQUIREMENT.
+
+Build a centralized inventory transaction engine.
+
+No UI component should directly mutate inventory balance totals.
+
+All stock-changing operations must pass through validated business functions.
+
+Required transaction types:
+
+- Opening stock
+- Purchase receiving
+- Transfer dispatch
+- Transfer receipt
+- Positive adjustment
+- Negative adjustment
+- Stock reservation
+- Reservation release
+- Reversal
+
+For each operation:
+
+1. Validate the input.
+2. Check referenced entities.
+3. Check available stock where applicable.
+4. Check transaction status.
+5. Check for duplicate operation IDs.
+6. Calculate the complete state transition.
+7. Generate all associated movement records.
+8. Commit the updated application state consistently.
+9. Persist the resulting state.
+
+Use pure functions for business calculations.
+
+Maintain all related records in one validated state transition before persistence.
+
+Do not persist half-completed transactions.
+
+Clearly document that LocalStorage cannot provide database-level transaction isolation or cross-device concurrency control.
+
+## STOCK DEFINITIONS
+
+On-hand Stock:
+Physical usable inventory recorded for a warehouse.
+
+Reserved Stock:
+Units allocated to pending internal reservations.
+
+Available Stock:
+On-hand Stock − Reserved Stock.
+
+In-transit Stock:
+Units dispatched from a source warehouse but not yet received at the destination.
+
+Inventory must not double-count in-transit stock.
+
+## STOCK TRANSFER EXAMPLE
+
+Initial:
+
+Warehouse A: 120 units
+Warehouse B: 30 units
+In Transit: 0 units
+
+Dispatch 50 units:
+
+Warehouse A: 70 units
+Warehouse B: 30 units
+In Transit: 50 units
+
+Receive transfer:
+
+Warehouse A: 70 units
+Warehouse B: 80 units
+In Transit: 0 units
+
+Total accounted units remain 150 throughout the workflow, assuming no loss or adjustment.
+
+Dispatch and receipt each occur exactly once.
+
+Implement tests for these rules.
+
+---
+
+# 8. INVENTORY VALUATION
+
+Use decimal.js or integer minor units for monetary values.
+
+Implement a clearly documented Moving Weighted Average Cost model for the demo.
+
+Example:
+
+New Average Cost =
+(Existing Quantity × Existing Average Cost + Received Quantity × Receipt Unit Cost)
+÷ (Existing Quantity + Received Quantity)
+
+Define behavior for:
+
+- Zero initial quantity
+- First purchase receipt
+- Partial receipt
+- Transfers
+- Adjustments
+- Stock depletion
+- Inventory valuation
+- Currency rounding
+
+Warehouse transfers should preserve the transferred inventory's recorded value according to the chosen model.
+
+Do not silently revalue historical movements when current product purchase cost changes.
+
+Maintain movement valuation snapshots.
+
+Inventory valuation reports must reconcile with the selected valuation method.
+
+If implementing a complete historical cost ledger is beyond the available environment, explicitly identify the valuation system as simplified and document the limitations.
+
+---
+
+# 9. PURCHASE ORDER CALCULATIONS
+
+Use precise decimal arithmetic.
+
+Line Subtotal = Quantity × Unit Cost
+
+Discounted Line = Line Subtotal − Applicable Discount
+
+Tax = Taxable Amount × Configured Tax Rate
+
+PO Total = Sum of Line Totals + Taxes + Applicable Charges
+
+Document:
+
+- Tax-inclusive versus tax-exclusive pricing
+- Discount sequencing
+- Currency rounding
+- Partial receipt accounting
+- Canceled purchase order behavior
+
+Never automatically increase inventory merely because a PO is placed.
+
+---
+
+# 10. LOCALSTORAGE ARCHITECTURE
+
+Build a central versioned persistence layer.
+
+Suggested keys:
+
+stockora:version
+stockora:data
+stockora:settings
+stockora:ui
+
+Requirements:
+
+- Typed storage operations
+- Zod validation
+- Safe initialization
+- Deterministic demo seed
+- Schema migration
+- Corrupt data recovery
+- Storage quota handling
+- JSON backup
+- JSON restore
+- Reset demo data
+- Safe client-side hydration
+- Stable transaction IDs
+- Consistent cross-page state
+
+Treat LocalStorage as a browser-local persistence adapter.
+
+Do not use direct, scattered LocalStorage mutations.
+
+Do not overwrite saved changes on refresh.
+
+Import validation must reject invalid foreign references, invalid quantities, duplicate transaction IDs, and inconsistent stock ledgers.
+
+No sensitive credentials.
+
+No large image blobs.
+
+---
+
+# 11. REALISTIC DEMO DATA
+
+Create a fictional business with:
+
+- 5 Warehouses
+- 200 Products
+- 50 Product Variants
+- 15 Categories
+- 30 Suppliers
+- 100 Purchase Orders
+- 150 Goods Receipts
+- 75 Stock Transfers
+- 100 Stock Adjustments
+- 800 Stock Movement Records
+- Multiple Reorder Rules
+- 12 Months of Historical Activity
+
+Make the initial dataset internally consistent.
+
+Use deterministic generation.
+
+Each warehouse must have realistic stock balances.
+
+Include:
+
+- High-stock products
+- Low-stock products
+- Out-of-stock products
+- Partially received purchase orders
+- Pending transfers
+- Completed transfers
+- Damaged stock adjustments
+- Reorder recommendations
+
+Never create sample data where a completed transfer has only one side recorded.
+
+Keep storage size practical.
+
+Prioritize valid relationships over reaching exact suggested record counts.
+
+---
+
+# 12. GLOBAL SEARCH
+
+Ctrl/Cmd + K opens Global Search.
+
+Search:
+
+- Products
+- SKUs
+- Warehouses
+- Suppliers
+- Purchase Orders
+- Stock Transfers
+- Application pages
+
+Commands:
+
+- Add Product
+- Create Purchase Order
+- Transfer Stock
+- Receive Goods
+- Open Inventory
+- Generate Labels
+
+Support keyboard navigation, categorized results, recent items, and accessible focus management.
+
+Every result must navigate correctly.
+
+---
+
+# 13. ADVANCED TABLES
+
+Create reusable enterprise DataTable components.
+
+Features:
+
+- Search
+- Sorting
+- Pagination
+- Multi-filtering
+- Column visibility
+- Row selection
+- Bulk actions
+- Context menus
+- Responsive presentation
+- CSV export
+- Empty states
+- Validation feedback
+
+Use TanStack Table where appropriate.
+
+Do not introduce nonfunctional bulk action menus.
+
+---
+
+# 14. RESPONSIVE DESIGN
+
+Support:
+
+- 360px mobile
+- 390px mobile
+- 768px tablet
+- 1024px laptop
+- 1440px desktop
+- 1920px wide desktop
+
+Desktop:
+
+- Full sidebar
+- Dense inventory tables
+- Multi-column dashboards
+- Warehouse overview
+- Purchase order editor
+
+Tablet:
+
+- Collapsible navigation
+- Adaptive inventory cards
+- Responsive forms
+
+Mobile:
+
+- Navigation drawer
+- Inventory record cards
+- Accessible filters
+- Touch-friendly action buttons
+- Transfer wizard
+- Receiving workflow
+- Responsive purchase order forms
+- Scrollable transaction tables where necessary
+- No accidental page overflow
+
+All important operations must remain accessible on mobile.
+
+---
+
+# 15. ACCESSIBILITY
+
+Target WCAG 2.2 AA.
+
+Implement:
+
+- Semantic HTML
+- Accessible dialogs
+- Keyboard navigation
+- Correct form labels
+- Visible focus indicators
+- Screen-reader-friendly transaction summaries
+- Sufficient contrast
+- Reduced-motion support
+- Clear validation messages
+- Accessible tables
+- Touch-friendly controls
+
+Do not convey stock status only through color.
+
+---
+
+# 16. PERFORMANCE
+
+Optimize:
+
+- Inventory tables
+- Stock calculations
+- Large movement histories
+- Purchase order forms
+- Search
+- Filtering
+- Chart rendering
+- LocalStorage persistence
+- PDF generation
+
+Use memoized selectors where useful.
+
+Do not recompute every warehouse balance for unrelated UI state changes.
+
+Use pagination or virtualization for long movement lists.
+
+Keep the client bundle efficient.
+
+---
+
+# 17. TESTING REQUIREMENTS
+
+Create automated tests for:
+
+1. Product creation.
+2. SKU uniqueness.
+3. Product editing.
+4. Product archiving.
+5. Category relationships.
+6. Warehouse creation.
+7. Warehouse archiving rules.
+8. Opening stock posting.
+9. Positive stock adjustment.
+10. Negative stock adjustment.
+11. Negative stock prevention.
+12. Transfer creation.
+13. Same-warehouse transfer rejection.
+14. Insufficient stock rejection.
+15. Transfer dispatch.
+16. Transfer receiving.
+17. Partial transfer receipt if supported.
+18. Duplicate dispatch prevention.
+19. Duplicate receiving prevention.
+20. In-transit stock reconciliation.
+21. Transfer cancellation rules.
+22. Purchase order creation.
+23. Purchase order total calculation.
+24. Partial goods receiving.
+25. Full goods receiving.
+26. Goods receiving over-quantity rejection.
+27. Duplicate receipt prevention.
+28. Supplier relationships.
+29. Moving average cost calculation.
+30. Inventory valuation.
+31. Reorder point calculation.
+32. Confirmed incoming stock treatment.
+33. Low-stock alerts.
+34. Barcode generation.
+35. QR label generation.
+36. CSV export.
+37. JSON backup.
+38. JSON restore.
+39. Invalid backup rejection.
+40. Corrupt storage recovery.
+41. Reset demo data.
+42. Search.
+43. Filtering.
+44. Sorting.
+45. Pagination.
+46. Cross-page inventory consistency.
+47. Historical movement preservation.
+48. Dark mode persistence.
+49. Mobile navigation.
+50. Production build compatibility.
+
+Run:
+
+- TypeScript typecheck
+- ESLint
+- Unit tests
+- End-to-end tests where supported
+- Production build
+
+Never claim tests passed without actually executing them.
+
+---
+
+# 18. PROJECT ARCHITECTURE
+
+Use feature-based organization.
+
+Suggested:
+
+src/
+  app/
+    page.tsx
+    dashboard/
+      page.tsx
+      inventory/
+      products/
+      categories/
+      warehouses/
+      movements/
+      transfers/
+      adjustments/
+      purchase-orders/
+      suppliers/
+      receiving/
+      reorder/
+      barcodes/
+      analytics/
+      reports/
+      activity/
+      settings/
+      help/
+  components/
+    layout/
+    ui/
+    inventory/
+    products/
+    warehouses/
+    purchasing/
+    receiving/
+    transfers/
+    charts/
+    tables/
+    forms/
+  features/
+    inventory/
+    products/
+    warehouses/
+    purchasing/
+    receiving/
+    suppliers/
+    reporting/
+  lib/
+    inventory-engine/
+    storage/
+    calculations/
+    validation/
+    seed/
+    pdf/
+    export/
+  stores/
+  hooks/
+  types/
+  tests/
+
+Keep inventory business logic independent of React components.
+
+Use pure, testable domain functions.
+
+Avoid monolithic files.
+
+---
+
+# 19. IMPLEMENTATION PHASES
+
+PHASE 1: Visual Foundation
+- Next.js setup
+- Design tokens
+- Application shell
+- Sidebar
+- Topbar
+- Light and Dark Mode
+- Responsive navigation
+
+PHASE 2: Inventory Data Foundation
+- Entity models
+- Relationships
+- Central inventory engine
+- LocalStorage repository
+- Seed dataset
+- Validation
+
+PHASE 3: Product and Warehouse Management
+- Product CRUD
+- Categories
+- Product variants
+- Warehouse CRUD
+- Product 360° View
+- Warehouse balances
+
+PHASE 4: Core Stock Operations
+- Movement ledger
+- Stock transfers
+- Stock adjustments
+- Reservations
+- Reversal rules
+
+PHASE 5: Purchasing
+- Suppliers
+- Purchase orders
+- Goods receiving
+- Receiving documents
+- Partial receiving
+
+PHASE 6: Operational Features
+- Reorder planning
+- Barcode labels
+- QR labels
+- Alerts
+- Activity timeline
+
+PHASE 7: Insights
+- Inventory dashboard
+- Analytics
+- Reports
+- Inventory valuation
+
+PHASE 8: Final Quality
+- Responsive refinement
+- Accessibility
+- Automated tests
+- Data consistency checks
+- Production build
+
+Do not attempt all complex features in a single uncontrolled implementation pass.
+
+Maintain a working application after each phase.
+
+---
+
+# 20. STRICT QUALITY RULES
+
+DO NOT:
+
+- Build a static dashboard.
+- Create disconnected stock counters.
+- Update stock directly from unrelated UI components.
+- Double-post purchase receipts.
+- Double-complete transfers.
+- Allow invalid negative inventory.
+- Mutate posted movement history destructively.
+- Show fake inventory values unrelated to records.
+- Create nonfunctional buttons.
+- Leave placeholder pages.
+- Use Lorem Ipsum.
+- Require a database.
+- Require a backend.
+- Claim true multi-user inventory synchronization.
+- Claim server-grade transaction isolation.
+- Claim real supplier communication.
+- Claim real shipping integrations.
+- Ignore mobile responsiveness.
+- Ignore accessibility.
+- Report unexecuted tests as successful.
+
+Every major inventory operation must be real within the browser-local demo.
+
+---
+
+# 21. DELIVERABLES
+
+Deliver:
+
+1. Complete Next.js application.
+2. Premium STOCKORA visual identity.
+3. Inventory Control Dashboard.
+4. Product Management.
+5. Product 360° Detail.
+6. Category Management.
+7. Warehouse Management.
+8. Stock Movement Ledger.
+9. Inter-Warehouse Transfers.
+10. Inventory Adjustments.
+11. Purchase Order Management.
+12. Supplier Management.
+13. Goods Receiving.
+14. Reorder Planning.
+15. Barcode/QR Label Generator.
+16. Inventory Analytics.
+17. Operational Reports.
+18. Activity Timeline.
+19. Workspace Settings.
+20. Help Documentation.
+21. Global Search.
+22. Light and Dark Mode.
+23. Responsive Layouts.
+24. LocalStorage Persistence.
+25. JSON Backup and Restore.
+26. CSV Exports.
+27. Client-side PDF Documents.
+28. Automated Tests.
+29. README.md.
+30. Vercel-Compatible Production Build.
+
+Include a README section:
+
+"Portfolio Demo vs Production ERP"
+
+Explain that inventory consistency is maintained only within the local browser application and does not provide secure multi-user transactions, database locking, cloud synchronization, or production accounting compliance.
+
+---
+
+# 22. FINAL ACCEPTANCE GATE
+
+Do not declare the project complete unless:
+
+- Every route renders.
+- Products can be created and edited.
+- Warehouses can be managed.
+- Inventory balances are derived consistently.
+- Stock adjustments update the movement ledger.
+- Transfers affect source and destination correctly.
+- In-transit stock is tracked separately.
+- Transfer completion cannot apply twice.
+- Purchase orders work.
+- Partial receiving works.
+- Goods receiving updates stock once.
+- Stock cannot become negative under defined rules.
+- Reorder recommendations work.
+- Barcode and QR label previews work.
+- PDF and CSV exports work.
+- Analytics use real inventory records.
+- Inventory valuation follows the documented method.
+- LocalStorage survives refresh.
+- JSON backup and restore work.
+- Light and Dark Mode are polished.
+- Mobile workflows are usable.
+- No critical dead buttons remain.
+- No database is required.
+- No backend is required.
+- Production build passes.
+- Test results are reported accurately.
+
+If anything is incomplete, identify the exact missing feature and its current status.
+
+---
+
+# FINAL INSTRUCTION
+
+Build STOCKORA ERP as a deeply functional, premium, browser-local Inventory and Warehouse Management application.
+
+Prioritize the following signature features:
+
+1. Inventory Control Center.
+2. Product 360° View.
+3. Multi-Warehouse Management.
+4. Stock Transfer Workflow.
+5. Purchase Order and Goods Receiving System.
+6. Central Inventory Transaction Ledger.
+
+The product must feel like professional enterprise operations software, not a generic dashboard template.
+
+Exceptional visual quality is required, but accurate stock calculations and reliable transaction handling are even more important.
+
+Implement systematically, validate the business logic, and maintain consistency across every screen.
+
+Begin with the data architecture, inventory transaction engine, and premium design system.

@@ -1,0 +1,6 @@
+{
+  "name": "STOCKORA ERP — Inventory & Warehouse Management",
+  "description": "Every Product. Every Movement. Under Control. Enterprise browser-local inventory, multi-warehouse, purchasing, receiving, and stock movement ledger system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
